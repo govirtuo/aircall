@@ -28,7 +28,7 @@ export default class Calls {
     this.api.post('/calls/' + id + '/link', callback, options)
   }
 
-  insightCards(id: string, contents: any, callback: Function, options?: Options) {
+  insightCards(id: number, contents: any, callback: Function, options?: Options) {
     options = defaults(options, {
       contents
     })

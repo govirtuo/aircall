@@ -6,8 +6,6 @@ import Tags from './tags'
 import Users from './users'
 
 export default class Aircall {
-  private apiID: string
-  private apiToken: string
   private api: API
   public calls: Calls
   public contacts: Contacts
@@ -16,8 +14,6 @@ export default class Aircall {
   public users: Users
 
   constructor(apiID: string, apiToken: string) {
-    this.apiID = apiID
-    this.apiToken = apiToken
     this.api = new API(apiID, apiToken)
 
     this.calls = new Calls(this.api)

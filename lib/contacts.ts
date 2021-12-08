@@ -31,7 +31,7 @@ export default class Contacts {
     this.api.get('/contacts/search', callback, options)
   }
 
-  searchByPhoneNumber(phoneNumber: string, callback: Function, options?: Options) {
+  searchByPhoneNumber(phoneNumber: string | null | undefined, callback: Function, options?: Options) {
     options = defaults(options, {
       phone_number: phoneNumber
     })
@@ -39,7 +39,7 @@ export default class Contacts {
     this.search(callback, options)
   }
 
-  searchByEmail(email: string, callback: Function, options?: Options) {
+  searchByEmail(email: string | undefined, callback: Function, options?: Options) {
     options = defaults(options, {
       email: email
     })
@@ -55,11 +55,11 @@ export default class Contacts {
     this.api.get('/contacts/' + id, callback, options)
   }
 
-  update(id: string, callback: Function, options?: Options) {
+  update(id: string | undefined, callback: Function, options?: Options) {
     this.api.post('/contacts/' + id, callback, options)
   }
 
-  delete(id: string, callback: Function, options?: Options) {
+  delete(id: string | undefined, callback: Function, options?: Options) {
     this.api.delete('/contacts/' + id, callback, options)
   }
 }
