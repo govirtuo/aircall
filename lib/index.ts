@@ -1,4 +1,4 @@
-var Aircall = require('./aircall');
+import Aircall from './aircall'
 
 /**
  * Create an Aircall client
@@ -8,8 +8,12 @@ var Aircall = require('./aircall');
  * @return {Aircall}
  */
 
-module.exports = function aircall(apiID, apiToken) {
+export default function aircall(apiID: string, apiToken: string) {
   if (!apiID) throw new Error('Aircall requires an apiID.');
   if (!apiToken) throw new Error('Aircall requires an apiToken.');
   else return new Aircall(apiID, apiToken);
 };
+
+export {
+  Aircall
+}

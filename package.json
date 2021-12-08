@@ -9,6 +9,8 @@
     "API"
   ],
   "scripts": {
+    "build": "npm run clean && echo 'Compiling Typescript' && npx tsc --version && npx tsc --pretty",
+    "clean": "npx rimraf dist",
     "test": "mocha --reporter spec --timeout 5000"
   },
   "author": "Franco Bouly (@rayfranco)",
@@ -18,6 +20,10 @@
     "superagent": "^3.8.3"
   },
   "devDependencies": {
-    "mocha": "^5.2.0"
+    "@types/defaults": "^1.0.3",
+    "@types/mocha": "^9.0.0",
+    "@types/superagent": "^4.1.13",
+    "mocha": "^5.2.0",
+    "typescript": "^4.5.2"
   }
 }
