@@ -1,6 +1,5 @@
 import API, { Options } from './api';
-
-var defaults = require('defaults');
+import defaults from 'defaults'
 
 export default class Numbers {
   constructor(private api: API) { }
