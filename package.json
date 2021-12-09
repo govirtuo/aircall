@@ -11,6 +11,15 @@
   "scripts": {
     "build": "npm run clean && echo 'Compiling Typescript' && npx tsc --version && npx tsc --pretty",
     "clean": "npx rimraf dist",
+    "major-release-candidate": "npm version premajor --preid rc && npm publish --tag beta",
+    "major-release": "npm version major && npm publish",
+    "minor-release-candidate": "npm version preminor --preid rc && npm publish --tag beta",
+    "minor-release": "npm version minor && npm publish",
+    "next-release-candidate": "npm version prerelease --preid rc && npm publish --tag beta",
+    "patch-release-candidate": "npm version prepatch --preid rc && npm publish --tag beta",
+    "patch-release": "npm version patch && npm publish",
+    "postpublish": "git push --tags",
+    "pre-release": "npm version prerelease --preid rc && npm publish --tag beta",
     "test": "mocha --opts test/mocha.opts \"./dist/test/**/*.js\""
   },
   "author": "Franco Bouly (@rayfranco)",
