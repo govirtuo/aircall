@@ -10,6 +10,7 @@
       "allowJs": true,
       "strict": true,
       "sourceMap": true,
+      "declaration": true,
       "preserveConstEnums": true,
       "removeComments": true,
       "resolveJsonModule": true,
@@ -25,4 +26,3 @@
       "node_modules"
     ]
   }
-  
