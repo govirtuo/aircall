@@ -18,8 +18,8 @@
     "dist/*"
   ],
   "scripts": {
-    "build": "npm run clean && echo 'Compiling Typescript' && npx tsc --version && npx tsc --pretty",
-    "clean": "npx rimraf dist",
+    "build": "npm run clean && echo 'Compiling Typescript' && tsc --version && tsc --pretty",
+    "clean": "rimraf dist",
     "major-release-candidate": "npm version premajor --preid rc && npm publish --tag beta",
     "major-release": "npm version major && npm publish",
     "minor-release-candidate": "npm version preminor --preid rc && npm publish --tag beta",
