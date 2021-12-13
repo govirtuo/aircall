@@ -1,15 +1,35 @@
 {
   "name": "@govirtuo/aircall",
-  "version": "0.3.0",
+  "version": "0.4.0-rc.2",
   "description": "Aircall API for node",
-  "main": "./lib",
-  "repository": "git://github.com/govirtuo/aircall.git",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/govirtuo/aircall.git"
+  },
   "keywords": [
     "aircall",
     "API"
   ],
+  "main": "./dist/lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "dist/*"
+  ],
   "scripts": {
-    "test": "mocha --reporter spec --timeout 5000"
+    "build": "npm run clean && echo 'Compiling Typescript' && npx tsc --version && npx tsc --pretty",
+    "clean": "npx rimraf dist",
+    "major-release-candidate": "npm version premajor --preid rc && npm publish --tag beta",
+    "major-release": "npm version major && npm publish",
+    "minor-release-candidate": "npm version preminor --preid rc && npm publish --tag beta",
+    "minor-release": "npm version minor && npm publish",
+    "next-release-candidate": "npm version prerelease --preid rc && npm publish --tag beta",
+    "patch-release-candidate": "npm version prepatch --preid rc && npm publish --tag beta",
+    "patch-release": "npm version patch && npm publish",
+    "postpublish": "git push --tags",
+    "pre-release": "npm version prerelease --preid rc && npm publish --tag beta",
+    "test": "mocha --opts test/mocha.opts \"./dist/test/**/*.js\""
   },
   "author": "Franco Bouly (@rayfranco)",
   "license": "MIT",
@@ -17,7 +37,14 @@
     "defaults": "~1.0.3",
     "superagent": "^3.8.3"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "devDependencies": {
-    "mocha": "^5.2.0"
+    "@types/defaults": "^1.0.3",
+    "@types/mocha": "^9.0.0",
+    "@types/superagent": "^4.1.13",
+    "mocha": "^5.2.0",
+    "typescript": "^4.5.2"
   }
 }

@@ -1,19 +1,18 @@
-var Aircall = require('..');
-var assert = require('assert');
-var util = require('util');
+import Aircall from '../lib/aircall'
+import assert from 'assert'
 
-describe('aircall', function() {
-  var aircall = Aircall(process.env.AIRCALL_ID, process.env.AIRCALL_TOKEN);
+describe('aircall', function () {
+  let aircall = new Aircall(process.env.AIRCALL_ID!, process.env.AIRCALL_TOKEN!);
 
-  describe('Aircall', function() {
+  describe('Aircall', function () {
 
-    it('should be an instance of Object', function(done){
+    it('should be an instance of Object', function (done) {
       assert(aircall instanceof Object);
       done();
     });
 
-    it('should be able to ping aircall API (ping)', function(done){
-      aircall.ping(function(err, res) {
+    it('should be able to ping aircall API (ping)', function (done) {
+      aircall.ping(function (err: any, res: any) {
         if (err) return done(err);
         assert(res);
         assert.equal(res.ping, 'pong');
@@ -21,8 +20,8 @@ describe('aircall', function() {
       });
     });
 
-    it('should be able to get company details', function(done){
-      aircall.company(function(err, res) {
+    it('should be able to get company details', function (done) {
+      aircall.company(function (err: any, res: any) {
         if (err) return done(err);
         assert(res.company);
         done();
@@ -33,11 +32,11 @@ describe('aircall', function() {
 
   // Users
 
-  describe('Users', function() {
-    var id;
+  describe('Users', function () {
+    let id: string;
 
-    it('should be able to get a list of users', function(done) {
-      aircall.users.list(function(err, res) {
+    it('should be able to get a list of users', function (done) {
+      aircall.users.list(function (err: any, res: any) {
         if (err) return done(err);
         assert(res);
         assert(Array.isArray(res.users));
@@ -46,8 +45,8 @@ describe('aircall', function() {
       });
     });
 
-    it('should be able to get a specific user', function(done) {
-      aircall.users.get(id, function(err, res) {
+    it('should be able to get a specific user', function (done) {
+      aircall.users.get(id, function (err: any, res: any) {
         if (err) return done(err);
         assert(res);
         assert.equal(res.user.id, id);
@@ -58,11 +57,11 @@ describe('aircall', function() {
 
   // Numbers
 
-  describe('Numbers', function() {
-    var id;
+  describe('Numbers', function () {
+    let id: string;
 
-    it('should be able to get a list of numbers', function(done) {
-      aircall.numbers.list(function(err, res) {
+    it('should be able to get a list of numbers', function (done) {
+      aircall.numbers.list(function (err: any, res: any) {
         if (err) return done(err);
         assert(res);
         assert(Array.isArray(res.numbers));
@@ -71,8 +70,8 @@ describe('aircall', function() {
       });
     });
 
-    it('should be able to get a specific number', function(done) {
-      aircall.numbers.get(id, function(err, res) {
+    it('should be able to get a specific number', function (done) {
+      aircall.numbers.get(id, function (err: any, res: any) {
         if (err) return done(err);
         assert(res);
         assert.equal(res.number.id, id);
@@ -83,9 +82,9 @@ describe('aircall', function() {
 
   // Contacts
 
-  describe('Contacts', function() {
-    var id;
-    var contact = {
+  describe('Contacts', function () {
+    let id: string;
+    let contact = {
       first_name: 'John',
       last_name: 'Doe',
       phone_numbers: [
@@ -102,8 +101,8 @@ describe('aircall', function() {
       ]
     };
 
-    it('should be able to create a contact', function(done) {
-      aircall.contacts.create(function(err, res) {
+    it('should be able to create a contact', function (done) {
+      aircall.contacts.create(function (err: any, res: any) {
         if (err) return done(err);
         assert(res);
         assert.equal(res.contact.first_name, contact.first_name);
@@ -112,8 +111,8 @@ describe('aircall', function() {
       }, contact);
     });
 
-    it('should be able to get a list of contacts', function(done) {
-      aircall.contacts.list(function(err, res) {
+    it('should be able to get a list of contacts', function (done) {
+      aircall.contacts.list(function (err: any, res: any) {
         if (err) return done(err);
         assert(res);
         assert(Array.isArray(res.contacts));
@@ -121,8 +120,8 @@ describe('aircall', function() {
       });
     });
 
-    it('should be able to get a contact', function(done) {
-      aircall.contacts.get(id, function(err, res) {
+    it('should be able to get a contact', function (done) {
+      aircall.contacts.get(id, function (err: any, res: any) {
         if (err) return done(err);
         assert(res);
         assert.equal(res.contact.first_name, contact.first_name);
@@ -130,8 +129,8 @@ describe('aircall', function() {
       });
     });
 
-    it('should be able to search a contact by phone', function(done) {
-      aircall.contacts.searchByPhoneNumber(contact.phone_numbers[0].value, function(err, res) {
+    it('should be able to search a contact by phone', function (done) {
+      aircall.contacts.searchByPhoneNumber(contact.phone_numbers[0].value, function (err: any, res: any) {
         if (err) return done(err);
         assert(res);
         assert(res.meta.count > 0);
@@ -139,8 +138,8 @@ describe('aircall', function() {
       });
     });
 
-    it('should be able to search a contact by email', function(done) {
-      aircall.contacts.searchByEmail(contact.emails[0].value, function(err, res) {
+    it('should be able to search a contact by email', function (done) {
+      aircall.contacts.searchByEmail(contact.emails[0].value, function (err: any, res: any) {
         if (err) return done(err);
         assert(res);
         assert(res.meta.count > 0);
@@ -148,8 +147,8 @@ describe('aircall', function() {
       });
     });
 
-    it('should be able to update a contact', function(done) {
-      aircall.contacts.update(id, function(err, res) {
+    it('should be able to update a contact', function (done) {
+      aircall.contacts.update(id, function (err: any, res: any) {
         if (err) return done(err);
         assert(res);
         assert.equal(res.contact.first_name, 'Jane');
@@ -159,8 +158,8 @@ describe('aircall', function() {
       });
     });
 
-    it('should be able to delete a contact', function(done) {
-      aircall.contacts.delete(id, function(err, res) {
+    it('should be able to delete a contact', function (done) {
+      aircall.contacts.delete(id, function (err: any, res: any) {
         if (err) return done(err);
         // actually API returns {}
         assert(res);
@@ -171,11 +170,11 @@ describe('aircall', function() {
 
   // Calls
 
-  describe('Calls', function() {
-    var id;
+  describe('Calls', function () {
+    let id: string;
 
-    it('should be able to get a list of calls', function(done) {
-      aircall.calls.list(function(err, res) {
+    it('should be able to get a list of calls', function (done) {
+      aircall.calls.list(function (err: any, res: any) {
         if (err) return done(err);
         assert(res);
         assert(Array.isArray(res.calls));
@@ -184,8 +183,8 @@ describe('aircall', function() {
       });
     });
 
-    it('should be able to get a specific call', function(done) {
-      aircall.calls.get(id, function(err, res) {
+    it('should be able to get a specific call', function (done) {
+      aircall.calls.get(id, function (err: any, res: any) {
         if (err) return done(err);
         assert(res);
         assert.equal(res.call.id, id);
@@ -193,18 +192,18 @@ describe('aircall', function() {
       });
     });
   });
-  
+
   // Tags
 
   describe('Tags', function () {
-    var id;
-    var tag = {
+    let id: string;
+    let tag = {
       name: 'test',
       color: '#ffffff'
     };
 
     it('should be able to create a tag', function (done) {
-      aircall.tags.create(function (err, res) {
+      aircall.tags.create(function (err: any, res: any) {
         if (err) return done(err);
         assert(res);
         assert.equal(res.tag.name, tag.name);
@@ -214,7 +213,7 @@ describe('aircall', function() {
     });
 
     it('should be able to get a list of tags', function (done) {
-      aircall.tags.list(function (err, res) {
+      aircall.tags.list(function (err: any, res: any) {
         if (err) return done(err);
         assert(res);
         assert(Array.isArray(res.tags));
@@ -223,7 +222,7 @@ describe('aircall', function() {
     });
 
     it('should be able to get a tag', function (done) {
-      aircall.tags.get(id, function (err, res) {
+      aircall.tags.get(id, function (err: any, res: any) {
         if (err) return done(err);
         assert(res);
         assert.equal(res.tag.name, tag.name);
@@ -232,18 +231,18 @@ describe('aircall', function() {
     });
 
     it('should be able to update a tag', function (done) {
-      aircall.tags.update(id, function (err, res) {
+      aircall.tags.update(id, function (err: any, res: any) {
         if (err) return done(err);
         assert(res);
         assert.equal(res.tag.name, 'test-update');
         done();
       }, {
-          name: 'test-update'
-        });
+        name: 'test-update'
+      });
     });
 
     it('should be able to delete a tag', function (done) {
-      aircall.tags.delete(id, function (err, res) {
+      aircall.tags.delete(id, function (err: any, res: any) {
         if (err) return done(err);
         // actually API returns {}
         assert(res);

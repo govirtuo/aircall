@@ -1,0 +1,4 @@
+--reporter dot
+--require ts-node/register
+--recursive
+--enable-source-maps
